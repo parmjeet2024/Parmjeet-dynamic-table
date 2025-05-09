@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Table Row Example</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Dynamic Table Example</h2>
+
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>Row Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td></tr>
+      <tr><td>2</td></tr>
+      <tr><td>3</td></tr>
+      <tr><td>4</td></tr>
+      <tr><td>5</td></tr>
+    </tbody>
+  </table>
+
+  <br>
+
+  <button onclick="addRow()">Add Row</button>
+  <button onclick="deleteRow()">Delete Row</button>
+
+  <p id="message">Message:</p>
+
+  <script>
+    const tableBody = document.querySelector("#myTable tbody");
+    const message = document.getElementById("message");
+
+    function addRow() {
+      const rowCount = tableBody.rows.length;
+      const newRow = tableBody.insertRow();
+      const cell = newRow.insertCell();
+      cell.textContent = rowCount + 1;
+      if (rowCount === 0) {
+        message.textContent = "Message:";
+      }
+    }
+
+    function deleteRow() {
+      if (tableBody.rows.length > 0) {
+        tableBody.deleteRow(0);
+        if (tableBody.rows.length === 0) {
+          message.textContent = "Message: No more rows to delete";
+        }
+      } else {
+        message.textContent = "Message: No more rows to delete";
+      }
+    }
+  </script>
+
+</body>
+</html>
